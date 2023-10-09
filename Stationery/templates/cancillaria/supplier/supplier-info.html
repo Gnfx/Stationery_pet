@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}
+    Поставщики подробнее
+{% endblock %}
+{% block content %}
+    <p>Название поставщика: {{ object.title }}</p>
+    <p>ФИО
+        поставщика: {{ one_supplier.agent_firstname }} {{ one_supplier.agent_name }} {{ one_supplier.agent_patronymic }}</p>
+    {% if perms.cancillaria.change_supplier %}
+        <a href="{% url 'edit_supp_view' object.pk %}" class="btn btn-success me-2">Редактировать</a>
+    {% endif %}
+    {% if perms.cancillaria.change_supplier %}
+        <form method="post" action="{% url 'del_supp_view' object.pk %}">
+            {% csrf_token %}
+            <br>
+            <input type="submit" class="btn btn-danger" value="Удалить">
+        </form>
+    {% endif %}
+    <br>
+    <a href="{% url 'list_supp_view' %}" class="btn btn-info btn-sm">Назад</a>
+{% endblock %}

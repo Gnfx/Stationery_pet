@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}
+    Домашняя страница
+{% endblock %}
+{% block content %}
+    <h1 style="color:#00AA72; font-size:39px; text-shadow:#000 1.5px 1.5px 2px;">Добро пожаловать в магазин канцелярских
+        товаров</h1><br>
+    <a class="btn btn-primary btn-lg" href="/cancillaria/list/">Каталог канцтоваров</a><br><br>
+    <a class="btn btn-primary btn-lg" href="{% url 'add_сancillaria' %}">Добавить канцтовары</a><br><br>
+    <a class="btn btn-primary btn-lg" href="{% url 'list_supp_view' %}">Поставщики</a><br><br>
+{% endblock %}

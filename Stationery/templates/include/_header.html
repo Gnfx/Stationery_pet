@@ -1,0 +1,32 @@
+<header class="d-flex justify-content-end py-3">
+    <ul class="nav nav-pills">
+        <li class="nav-item"><a href="{% url 'index_сancillaria' %}" class="btn btn-success me-3">Домашняя
+            страница</a></li>
+        <li class="nav-item"><a href="{% url 'list_сancillaria' %}" class="btn btn-primary btn-sm me-2">Каталог
+            канцтоваров</a></li>
+        <li class="nav-item"><a href="{% url 'add_сancillaria' %}" class="btn btn-primary btn-sm me-2">Добавить
+            канцтовары</a></li>
+        <li class="nav-item"><a href="{% url 'list_supp_view' %}" class="btn btn-primary btn-sm me-2">Поставщики</a>
+        </li>
+        <div style="margin-left:220px;"></div>
+        {% if request.user.is_anonymous %}
+            <li class="nav-item"><a href="{% url 'log in' %}"
+                                    class="btn btn-outline-success me-1"
+                                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Авторизация</a>
+            </li>
+            <li class="nav-item"><a href="{% url 'regis' %}" class="btn btn-outline-success me-1"
+                                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Регистрация</a>
+            </li>
+        {% else %}
+            <li class="nav-item"><a href="{% url 'contact_email' %}" class="btn btn-outline-success me-1"
+                                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Отправить
+                письмо</a></li>
+            <li class="nav-item"><a href="{% url 'list_basket_prod' %}" class="btn btn-outline-success me-1"
+                                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Корзина</a>
+            </li>
+            <li class="nav-item"><a href="{% url 'log out' %}" class="btn btn-outline-success me-1"
+                                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Выйти</a>
+            </li>
+        {% endif %}
+    </ul>
+</header>

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ cancillaria_item.name }}
+{% endblock %}
+{% block content %}
+    <p>Название канцтовара: {{ cancillaria_item.name }}</p>
+    <p>Описание: {{ cancillaria_item.description }}</p>
+    <p>Цена: {{ cancillaria_item.price }}</p>
+    <p>Дата добавления: {{ cancillaria_item.date_add }}</p>
+    <p>Дата обновления: {{ cancillaria_item.date_update }}</p>
+    <div class="container">
+        <form method="post" action="{% url 'add_basket_prod' cancillaria_item.pk %}">
+            {% csrf_token %}
+            {{ basket_form }}
+            <input type="submit" class="btn btn-success" value="Добавить в корзину">
+        </form>
+    </div>
+    <a href="{% url 'list_сancillaria' %}" class="btn btn-info btn-sm">Назад</a>
+{% endblock %}

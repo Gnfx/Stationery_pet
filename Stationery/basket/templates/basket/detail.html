@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Корзина
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Канцтовары</th>
+                <th scope="col">Картинка</th>
+                <th scope="col">Количество</th>
+                <th scope="col">Цена за шт</th>
+                <th scope="col">Валюта</th>
+                <th scope="col">Общая цена</th>
+                <th scope="col">Удаление</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in basket %}
+                {% with product_obj=item.cancillaria %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'one_сancillaria' product_obj.pk %}">
+                                {{ product_obj.name }}
+                            </a>
+                        </td>
+                        <td>
+                            {% if product_obj.photo != "" %}
+                                <img src=" {{ product_obj.photo.url }}" class="card-img-top" alt="...">
+                            {% else %}
+                                <img src="{% static 'image/icon_none.jpg' %}" class="card-img-top" alt="...">
+                            {% endif %}
+                        </td>
+                        <td>
+                            {{ item.count_prod }}
+                        </td>
+                        <td>
+                            {{ item.price_prod }}
+                        </td>
+                        <td> руб.</td>
+                        <td>
+                            {{ item.total_price }}
+                        </td>
+                        <td>
+                            <a href="{% url 'remove_basket_prod' product_obj.pk %}">Удалить</a>
+                        </td>
+                    </tr>
+                {% endwith %}
+            {% endfor %}
+            <tr>
+                <td>Всего:</td>
+                <td colspan="4"></td>
+                <td>{{ basket.get_total_price }}</td>
+            </tr>
+            </tbody>
+        </table>
+        <div>
+            <a href="{% url 'list_сancillaria' %}" class="btn btn-success">Посмотреть еще канцтовары</a>
+            <a href="{% url 'clear_basket_prod' %}" class="btn btn-danger">Очистить</a>
+            <a href="#" class="btn btn-warning">Оформить заказ</a>
+        </div>
+    </div>
+{% endblock %}
